@@ -1,0 +1,6 @@
+# Download composer: https://getcomposer.org/download/
+# Download PHPStorm: https://www.jetbrains.com/phpstorm/
+# Get key phpstorm free:
+	- Vào trang: http://idea.lanyus.com/?fbclid=IwAR2fJT5AWx4MgRhKAn2EUQY5xd2fW6fcwySjhwSitt9aMofj7BWXMPuYysc
+	- Ấn nút: 获得注册码 để get key
+# Sau khi kích hoạt key nếu gặp lỗi thì xử lý theo hướng dẫn này: https://tinhte.vn/threads/cai-dat-va-active-phpstorm-2018-license-key.2876172/

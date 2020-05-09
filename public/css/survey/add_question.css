@@ -1,0 +1,45 @@
+
+    input#question_title{
+    padding-top: none;
+    border-color: #e8e8e8!important;
+    border-top: none;
+    border-right: none;
+    border-left: none;   
+    }
+    input, button, select, textarea {
+        font-family: inherit;
+        font-size: inherit;
+        line-height: inherit;
+        border-color: #e8e8e8!important;
+        border-top: none;
+        border-right: none;
+        border-left: none;
+        width: 700px;
+    }
+    select#question_type {
+        width: 200px;
+    }
+    button#submit {
+        width: 50px;
+    }
+    .table {
+        margin-bottom: 10px;
+        margin-left: 75px;
+    }
+    p.h1.p-0-0-10-0 {
+        box-sizing: border-box;
+        font-size: 34px;
+        line-height: 135%;
+        max-width: 100%;
+        min-width: 0%;
+        color: #2570BB;
+        font-family: 'Roboto Condensed', Arial, sans-serif;
+        text-transform: uppercase;
+    }
+    .h3, h3 {
+        font-size: 1.75rem;
+        white-space: pre-wrap;
+        line-height: 135%;
+        margin-top: 22px;
+        font-size: 15px;
+    }

@@ -1,0 +1,74 @@
+if(Auth::guard($guard)->check())
+        {
+            // return \redirect()->route('error');
+            $id = Auth::user()->user_id;
+            
+            $url = Request::path();
+
+            $role = AppRoleUser::where('user_id','=',$id)->first();
+
+            $role_id = $role->role_id;
+            $permission = Permission::where('role_id','=',$role_id)->get();
+
+            // echo "asdasd".$id;
+            // return $next($request);
+                foreach ($permission as $per) 
+                    $route[] = $per->route_id;
+                   
+            if(isset($route)){
+                //dd($route);
+
+                $arrayLength = count($route);
+                // dd($arrayLength);
+                $i = 0;
+                while ($i < $arrayLength)
+                {
+                    // dd($route[$i]);
+                    //echo $route[$i] ."<br />";
+                    $routes[] = Route::where('route_id','=',$i)->get();  
+                    $i++;
+                }
+                foreach ($route as $rou) 
+                {
+                    $routes[] = Route::where('route_id','=',$rou)->get();  
+                    //dd($rou);
+                    if(isset($routes)){
+                        // dd($routes->route_link);
+
+                        foreach ($routes as $row) {
+                            dd($routes);
+                            foreach ($row as $item) {
+                                //dd($item);
+                            }
+                        }
+                        foreach ($routes as $row) {
+                            //dd($row);
+                            $url == $row['route_link'];
+                            //dd($url);
+                        }
+                        // for ($item=0; $item < $r; $item++)
+                        // {
+                        //     //echo $item;
+                        //         //dd($item);
+                        //         // if($url == $routes[$item]->route_link)
+                                    
+                        //         //     return $next($request);
+                        // }
+                        return \redirect()->route('error');
+                            
+                    } 
+                }
+                         
+            }
+            // else
+            // {
+            //     return \redirect()->route('login');
+            // }
+            
+        }
+        else
+        {
+            return \redirect()->route('login');
+        }
+       
+    }

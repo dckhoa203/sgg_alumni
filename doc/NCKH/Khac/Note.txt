@@ -1,0 +1,66 @@
+﻿phiên bản: 	laravel 5.8
+		php 7.3
+		laragon thay cho xampp
+ide:		visual code/phpstorm
+comment(nói sau)
+sever 		3309:8080
+gitlab:		mail cá nhân
+heidiSQL
+
+note:
+Tiếng anh riêng tiếng việt riêng
+Không quan trọng liên kết
+Bảng khoa, phòng ban gộp lại 1 (academy)(thông tin khoa, viện,phòng ban)
+bỏ bảng lớp_cv,lop_cn, lop_sv
+giang vien,user,sv,tk,user acount gộp lại viết phân quyền
+bảng dân tộc -> trường
+thành phố, quận huyện thiếu xã, phường
+khảo sát, khảo sát tốt nghiệp, câu hỏi khảo sát làm lại
+post thiếu chuyên mục
+sự kiện để làm sau (sự kiện có thể gộp vô bài đăng)
+thông tin việc làm chuyển vô user
+
+thêm bảng options(cài đặt của người dùng)
+(create_at,update_at,delete_at:timestamp)
+bảng ngành và chuyên ngành
+tất cả viết thường
+tên bảng luôn là số nhiều,dữ liệu trong bảng số ít
+years (begin,end : varchar)
+add year to classes(cod them y vo c)
+
+class_user (classes_user_end,begin:null
+accountability:varchar or text)
+users không tiền tố
+active_code
+
+bảng mail_log(gửi cho ai)
+bảng mail_template (mẫu mail)
+
+bảng role_users (quản lý phân quyền và giao diện)
+
+permission quản lý quyền truy cập (link)
+
+role phân quyền user
+router các chức năng
+permission(liên kết role, router)
+
+catelories(slug:tên thay thế link hiển thị)
+post
+ckediter
+post_views
+examines(mẫu khảo sát)
+
+dbdesigner.net
+visio
+
+modul chính:
+quản lý bài đăng
+	có cho public ngay không?
+	ai được đăng bài?
+	bìa bài đăng gồm gì?("tên, mssv, tên tác giả, nội dung)
+	có cần giới hạn nội dung đăng bài?
+	hiện tác giả không?
+	
+quản lý sinh viên
+quản lý giảng viên
+quản lý mẫu khảo sát tỷ lệ có viêc làm

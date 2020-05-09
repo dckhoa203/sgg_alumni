@@ -1,0 +1,38 @@
+﻿# Không tạo khóa ngoại
+# Comment đầy đủ các trường
+# Sử dụng dấu ' thay cho " trừ trường hợp tạo comment bảng
+# Sử dụng created_at và updated_at mặc định
+# Schema::dropIfExists (không sử dụng)
+# comment cho bảng: DB::statement("ALTER TABLE `user` comment 'This is user'");
+# phpstan sử dụng chuẩn static coding check: https://github.com/nunomaduro/larastan
+
+
+tạo migration theo mẫu:
+php artisan make:migration create_<tên bảng số nhiều>_table
+
+Thực hien cac lenh sau:
+Cai dat: composer install
+Cai key: php artisan key:generate
+Chú ý: tuyệt đối không chạy: composer update, một số code chạy cho version này được nhưng version khác thì kh, chạy lệnh này toàn bộ các gói và cả framework update hết
+
+Nếu muố kết nối DB thì cần tạo DB trước, tạo một cái rỗng kết nối mới chạy migrate được:
+Chạy rồi đó em
+Cách sài git
+
+Trước khi code (mở IDE lên): Cập nhật các thay đổi từ master để nhánh của mình thống nhất với master . Có bất cứ thay đổi nào anh sẽ update và thông báo ngay.
+Chọn branch > update from master
+
+Sau khi code xong 1 chức năng, muốn update, thì làm lại việc kéo các thay đổi như trên rồi hãy update lên
+Em xóa thư mục .git rồi đúng kh
+mã có vấn đề rồi, git kh đo được thay đổi
+Anh sẽ thử lại , tí em chép qua nhé
+Em lưu  lồng 2 cái git , nên bị vậy 
+Ok
+Em còn thắc mắt gì hl=k
+
+vậy giờ xài cái sgg_alumni2 luôn hả a, um em chuuyển mấy cái của em qua đi, cáikia tùm lum quá
+ôk anh
+3 bạn kia ok hk
+ok anh, hk có Khánh, có Khoa vs Tèo hà
+Rồi mọi gn làm tiếp chủ nhật 5h dealine
+Có gì 6 7 h a xem lại rồi sửa 1 lượt, phân bổ module mới

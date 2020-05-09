@@ -1,0 +1,47 @@
+quy định code và tài liệu trong doc
+
+laravel 5.8
+mysql 5.7.25
+php 7.1
+
+chỉnh sửa thì tạo thư mục với tên là năm_tháng_ngày
+tất cả đều lưu tên là năm tháng ngày nếu trùng thì thêm số
+
+Database/Data_log:
+ver: tên file
+user: ten.ho
+Note:
+
+Migrate giống trên
+
+----------
+trước khi tạo thì update from master xem đã có chưa
+
+
+quy tắc commit ở trong rule
+HH :chuẩn 24h
+
+
+composer install
+cài gói cs fixer của frank terragna của visual code
+bấm alt shift f tự định dạng lại
+
+kiểu lạc đà đặt tên lớp,thư mục
+kiểu con rắn đặt tên function
+
+tạo bảng k tạo khóa ngoại, comment đầy đủ các trường
+
+
+bỏ down trong migra
+
+phpstan kiểm tra code tĩnh (kt lỗi code)
+
+chỗ csdl mail sửa lại số nhiều
+k đọng đến config (backup của env)
+
+tuần này xong migrate
+cài phpdebug
+
+
+beyond compare 4 so sánh 2 thư mục
+dùng laragon

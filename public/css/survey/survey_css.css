@@ -1,0 +1,111 @@
+  @import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+  body {
+      color: black;
+      font-family: Poppins, sans-serif;
+      /* font-weight: 400; */
+  }
+  
+  .alert {
+      padding: 9px;
+  }
+  
+  label {
+      font-weight: 400;
+  }
+  
+  label::before {
+      content: none!important;
+  }
+  
+  label::after {
+      content: none!important;
+  }
+  
+  input:focus-within {
+      border-color: green!important;
+  }
+  
+  .container-fluid {
+      width: 100%;
+  }
+  
+  .card.p-5 {
+      width: 60%;
+      margin: auto;
+      font-weight: 400;
+  }
+  
+  input {
+      border-color: #e8e8e8!important;
+      border-top: none;
+      border-right: none;
+      border-left: none;
+      font-family: Roboto, RobotoDraft, Helvetica, Arial, sans-serif;
+      font-size: inherit;
+      line-height: inherit;
+      line-height: 135%;
+      height: 40px;
+  }
+  
+  .radio input[type=radio] {
+      width: 16px;
+      height: 16px;
+      opacity: 1!important;
+      z-index: 1;
+      outline: 0!important;
+  }
+  
+  input[type=checkbox] {
+      width: 16px;
+      height: 16px;
+      margin: 4px 0 0;
+      line-height: normal;
+  }
+  
+  .materialize-textarea {
+      width: 100%;
+  }
+  
+  .text {
+      width: 60%;
+  }
+  
+  .ch label {
+      display: inline-block!important;
+      vertical-align: middle!important;
+  }
+  
+  .ra input {
+      display: inline-block!important;
+      opacity: 1!important;
+      vertical-align: middle!important;
+  }
+  
+   ::placeholder {
+      font: 400 16px Roboto, RobotoDraft, Helvetica, Arial, sans-serif;
+      height: 24px;
+      line-height: 24px;
+  }
+  
+  .description {
+      white-space: pre-wrap;
+      line-height: 135%;
+      margin-top: 22px;
+      font-size: 13px;
+  }
+  
+  .title {
+      box-sizing: border-box;
+      font-size: 34px;
+      line-height: 135%;
+      max-width: 100%;
+      min-width: 0%;
+  }
+  
+  .question_title {
+      color: #000;
+      font-size: 20px;
+      line-height: 135%;
+      width: 100%;
+      word-break: break-word;
+  }

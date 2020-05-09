@@ -1,0 +1,2 @@
+Anh ơi cho em hỏi sao em tạo 10 cái migrate (đã chạy hết) thì nó chỉ hiển thị có 6 cái trên phpmyadmin thôi còn 4 cái kia không hiện?
+Trước khi chạy lại em thử xóa hết các bảng rồi hãy chạy lại

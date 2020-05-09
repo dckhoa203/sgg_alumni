@@ -1,0 +1,3 @@
+﻿Anh ơi đặt độ dài (lenght) cho tinyinteger sao vậy anh.
+Em đặt như vầy, nó báo lỗi:
+$table->tinyInteger('post_is_like', 1);

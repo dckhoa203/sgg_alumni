@@ -1,0 +1,12 @@
+Tạo các model có tên là số ít dưới dạng sau:
+php artisan make:model <tên bảng ở số ít>
+
+# Dấu bao chuổi sử dụng ' trừ một số trường hợp đặt biệt thì dùng  " hoặc `
+VD: php artisan make:model Academy
+
+# Sau khi tạo xong thì dời model vào thư mục Models và sửa namespace thành namespace App\Models
+
+# Chỉnh lại extends class từ Model thành BaseModel và import class BaseModel bằng dòng: namespace App\Models\Common\BaseModel;
+
+Nhiều khai báo trong các lớp Model là không cần thiết,
+ nhưng để đảm bảo rule code và tránh rủi ro do bị thay đổi cấu hình nên các model nên cấu hình theo mấu có sẵn trong file Academy.php

@@ -1,0 +1,185 @@
+<?php
+
+namespace App\Http\Controllers\Base;
+
+use App\Http\Controllers\Controller;
+use Exception;
+use GuzzleHttp\Client;
+use GuzzleHttp\Exception\RequestException;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+
+class BaseClient extends Controller
+{
+    // Defaul setting
+    public function __construct()
+    {
+        // Create and config
+        $this->client();
+    }
+
+    const SUCCESS = 200;
+    const VALIDATE = 400;
+    const EXCEPTION = 500;
+
+    // Client object
+    public $client = null;
+
+    // Method
+    public $method = "GET";
+
+    // Route after default base_uri
+    public $route = "";
+
+    // Header of request
+    public $header = [
+        "content-type" => "application/json",
+        "Accept" => "application/json"
+    ];
+
+    // Boby of request
+    public $body = [];
+
+    // Key of request set in body
+    public $key = "";
+
+    // Response data to server
+    public $reponse = [];
+
+    // Code of response to server
+    public $code = 0;
+
+    // Code of response to server
+    public $request = null;
+
+    /**
+     * Config base_uri client
+     * @param  string $base_uri
+     * @return void
+     */
+    public function client($base_uri="")
+    {
+        if($base_uri == ""){
+            $base_uri =  config("onetap")["onetap_host"];
+        }
+        // Create client
+        $this->client = new Client([
+            "base_uri" => $base_uri,
+        ]);
+    }
+
+    /**
+     * Config request to mobile device and body = request
+     * @param  Request $request
+     * @return object
+     */
+    public function request(Request $request)
+    {
+        $body = [];
+        foreach ($request->all() as $key => $value) {
+            $body[$key] = $value;
+        }
+        $this->body = $body;
+
+        return $this;
+    }
+
+    /**
+     *  Config or change body
+     * @param  array $param
+     * @return object
+     */
+    public function body($param)
+    {
+        $this->body = $param;
+
+        return $this;
+    }
+
+    /**
+     * Config or change header client
+     * @param  array $header
+     * @return object
+     */
+    public function header($header)
+    {
+        $this->header = $header;
+
+        return $this;
+    }
+
+    /**
+     * Config or change method
+     * @param  array $method
+     * @return object
+     */
+    public function method($method)
+    {
+        $this->method = $method;
+
+        return $this;
+    }
+
+    /**
+     * Config route
+     * @param  array $route
+     * @return object
+     */
+    public function route($route)
+    {
+        $this->route = $route;
+
+        return $this;
+    }
+
+    /**
+     * Config code after requét to server
+     * @param  int $code
+     * @return object
+     */
+    public function code($code = 200)
+    {
+        $this->code = $code;
+
+        return $this;
+    }
+
+    /**
+     * Call request to server after make response to mobile device
+     * @return object
+     */
+    public function feedback()
+    {
+        try {
+            $response = $this->client->request(
+                $this->method,
+                $this->route,
+                [
+                    "headers" => $this->header,
+                    "body" => json_encode($this->body)
+                ]
+            );
+            $this->reponse = $response->getBody();
+            $this->reponse = json_decode($this->reponse->getContents(), true);
+            return response()
+                    ->json($this->reponse);
+        } catch (RequestException $e) {
+            $status = $e->getResponse()->getStatusCode();
+            // To catch exactly error 400 use
+            if ($status == "400" || $status == "500") {
+                $this->reponse = json_decode($e->getResponse()->getBody()->getContents());
+            }
+            return response()
+                    ->json($this->reponse, $status);
+        } catch (Exception $ex) {
+            return response()
+                    ->json(
+                        [
+                        "code" => 500,
+                        "errors" => ["Server error"]
+                    ],
+                        500
+                );
+        }
+    }
+}

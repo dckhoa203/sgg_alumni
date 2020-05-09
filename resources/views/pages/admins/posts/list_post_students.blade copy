@@ -1,0 +1,158 @@
+@extends('layouts.admin')
+
+@section('content')
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">Bài viết trên phân quyền Sinh viên</h3>
+        </div>
+        <div class="panel-body">
+            <div id="post_list">
+                @foreach ($post_students as $row)
+                <div class="jumbotron" style="padding:24px 30px 24px 30px">
+                    <div class="title">
+                        {{-- {{$row->post_id}} --}}
+                        <h3>
+                            <a href="{{route('posts.slug',$row->post_slug)}}">
+                                {{$row->post_title}}
+                            </a>
+                        </h3>
+                        <h5>Viết bởi <b>{{$row->user['name']}}</b> on {{date("d",strtotime($row->created_at))}} tháng {{date("m",strtotime($row->created_at))}} năm {{date("Y",strtotime($row->created_at))}}</h5>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-2">
+                            <img src="{{asset('/images/myfiles_cit/doc.png')}}" alt="bai-dang-phan-quyen-sinh-vien image" width="300px">
+                        </div>
+                        <div class="col-md-8">
+                            {{-- <h3>User ID: {{$row->user['user_id']}}</h3> --}}
+                            {{-- <h3><b>{{$row->user['name']}}</b></h3> --}}
+                            {{-- <h4>Slug: <b><i>{{$row->post_slug}}</i></b></h4> --}}
+                            <div>{{$row->post_content}}<br /><br />
+                            <a href="#" class="click_comment" data-post-id="{{$row->post_id}}"><span id="count_comment-{{$row->post_id}}">
+                                {{-- TODO: Hiển thị số lượt comment theo Post_id --}}
+                                @foreach ($count_comment as $item)
+                                    @if ($item->post_id == $row->post_id)
+                                        {{$item->count_comment}}
+                                    @endif
+                                @endforeach
+                            </span>Comment</a>
+                                <form id="form-{{$row->post_id}}" data-user-id="{{Auth::user()->user_id}}" style="display: none" data-post-id="{{$row->post_id}}">
+                                    @csrf
+                                    <textarea name="comment_content" maxlength="160"></textarea>
+                                    <button type="submit" class="btn btn-success">Đăng</button>
+                                </form>
+                                {{-- TODO: Show comment theo Post_id --}}
+                                <div id="show-{{$row->post_id}}" class="show-comment-button" data-post-id="{{$row->post_id}}" style="display:none;">
+                                    {{-- <a href="#" class="load-more">view more comment previous</a><br> --}}
+                                    <select multiple id="public-methods" name="public-methods[]" style="width:500px">
+                                        @foreach ($show_comments as $show)
+                                            @if ($show->post_id === $row->post_id)
+                                                {{-- <b>{{$show->user['name']}}</b>: {{$show->comment_content}}. <br> --}}
+                                                <option><b>{{$show->user['name']}}</b>: {{$show->comment_content}}.
+                                                {{$show->created_at}}</option>
+                                            @endif
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+                @endforeach
+            </div>
+            <div align="center">
+                {!! $post_students->links() !!}
+            </div>
+        </div>
+    </div>
+<script>
+    $(document).ready(function () {
+            /*
+            $('.click_comment').click(function(e){
+                e.preventDefault();
+                const post_id = $(this).attr("data-postID");
+                const user_id = $(this).attr("data-user_id");
+
+                console.log(post_id);
+                console.log(user_id);   
+
+                //$('#comment_form').slideToggle('slow');
+
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+                });
+
+                $('#submit').click(function(e){
+                    e.preventDefault();
+                    const comment_content = $('#comment_content').val();
+
+                    // console.log(comment_content);
+                    
+                    $.ajax({
+                        type: "POST",
+                        url: "{{route('posts.comment_ajax')}}",
+                        data: {comment_content: comment_content},
+                        dataType: "JSON",
+                        success: function (response) {
+                            console.log("Content: ",response.commnet_content);
+                            console.log(response.message);
+                        }
+                    }); 
+                })
+
+                $.ajax({
+                    type: "POST",
+                    url: "{{route('posts.list_post_students')}}",
+                    data: {post_id : post_id, user_id: user_id},
+                    dataType: "JSON",
+                    success: function (response) {
+                        console.log("Post_id: ",response.post_id);
+                        console.log("User_id: ",response.user_id);
+                    }
+                }); 
+            })
+            */
+           $('.click_comment').click(function (event) {
+                event.preventDefault();
+                const post_id = $(this).attr("data-post-id");
+                console.log(post_id);
+                $(this).next('form').slideToggle();
+                $(`div[id*=show-${post_id}]`).show()
+           })
+
+           $('form[id*="form-"').on('submit', function (event) {
+               event.preventDefault();
+               const userId = $(this).attr('data-user-id')
+               const postId = $(this).attr('data-post-id')
+               const commentContent = $(this).find('textarea').val();
+
+               $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+                
+                $.ajax({
+                    type: "POST",
+                    url: "{{route('posts.comment_ajax')}}",
+                    data: {userId: userId, postId: postId, commentContent: commentContent},
+                    dataType: "json",
+                    success: function (response) {
+                        // $(`#count_comment-${postId}`).text(response.count_comment.count_comment);
+                        console.log(response.count_comment);
+                        if (response.status === 'success') {
+                            $(`#count_comment-${postId}`).text(response.count_comment[0].count_comment);
+                            alert('Add comment successfully!');
+                            $('form[id*=form-').slideDown();
+                            location.reload();
+                        }
+                    }
+                });
+                
+           });
+        });
+</script>
+@endsection

@@ -1,0 +1,97 @@
+@extends('layouts.admin')
+@section('content')
+<link rel="stylesheet" href="{{asset('/css/khanh_ho/style_index_2.css')}}">
+<script type="text/javascript"
+    src="https://www.viralpatel.net/demo/jquery/jquery.shorten.1.0.js"></script>
+    <div id="fb-root"></div>
+<div class="container">
+
+
+    <div class="content-border pager-offset">
+        <h2 class="black-bar-header">Các tin tức khác</h2>
+        <div class="view view-news-recent view-id-news_recent view-display-id-paged_list view-dom-id-6eefa6e989759a55744d694dc2e0a2b2"> 
+            @foreach ($posts as $row)
+                
+              
+            <!-- Start item -->
+            <div class="panelizer-view-mode node node-teaser node-article node-2274 node-promoted"> 
+                            
+                <!-- ########## NEW HTML ############## -->
+                <div class="white-stone">
+                    <div class="white-stone-content">
+                        <div class="gs-container">
+                        <div class="default-1-3">
+                            <div class="simple-border">
+                                <div class="field field-name-field-article-media field-type-file field-label-hidden">
+                                        <a title="" href="{{route('posts.slug',$row->post_slug)}}">
+                                        <div class="field field-name-field-article-media field-type-file field-label-hidden">
+                                            <div class="file file-image file-image-jpeg" id="file-1321">
+                                                <img width="320" height="180" alt="" src="{{asset('/images/myfiles_cit/test_posts/Great-Leaders-Develop-Their-People-What-Development-Means.png')}}" typeof="foaf:Image">
+                                            </div>
+                                        </div>
+                                    </a>
+                
+                                    </div>
+                                </div>
+                            </div>
+                        <div class="default-2-3">
+                            <h4><a href="{{route('posts.slug',$row->post_slug)}}">{{$row->post_title}}</a></h4>
+                            <div class="teaser-content">
+                                <div class="field field-name-field-body-medium field-type-text-long field-label-hidden">
+                                    <div class="display">
+                                        {{$row->post_content}}
+                                    </div>
+                                    <script type="text/javascript">
+                                        $(document).ready(function() {
+                                        
+                                            $(".display").shorten();
+                                        
+                                        });
+                                    </script>
+                                </div>
+                            </div>
+                            <div class="horizontal-group">
+                                <div class="horizontal-group-item">
+                                    <div class="all-caps subtle icon-container icon-posted">   
+                                        <span class="time-ago time-ago-node-2274">{{$row->created_at}}</span>
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                </div>		  
+            </div>
+            <!-- end item -->
+
+            @endforeach 
+            <div align="right">
+                {!! $posts->links() !!}
+            </div> 
+            
+        </div>
+    </div>
+
+
+
+</div>
+{{-- end container --}}
+<script>
+    $(".display").shorten({
+        "showChars" : 200
+    });
+
+
+    $(".display").shorten({
+        "showChars" : 150,
+        "moreText"	: "See More",
+    });
+
+    $(".display").shorten({
+        "showChars" : 50,
+        "moreText"	: "See More",
+        "lessText"	: "Less",
+    });
+</script>
+@endsection

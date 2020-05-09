@@ -1,0 +1,10 @@
+Clone: 
+https://github.com/leminhluan4244/sgg_alumni
+Laravel: 5.8
+Mysql: 5.7.25
+PHP: 7.1
+Cài đặt:
+	composer install
+Nếu sau khi cài đặt vẫn gặp lỗi thì tạo key:
+https://stackoverflow.com/questions/33700580/laravel-5-application-key
+	php artisan key:generate 
